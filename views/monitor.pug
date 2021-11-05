@@ -1,0 +1,34 @@
+extends layout
+
+block content
+  h1= title
+  p Welcome to the monitor pug
+  div(class="container-fluid")
+        div(class="row")
+            -
+                let monitor = [
+                    {
+                        "brand": "hp",
+                        "size": "16 inch",
+                        "cost": "1000 $"
+                    },
+                    {
+                        "brand": "dell",
+                        "size": "14 inch",
+                        "cost": "800 $"
+                    },
+                    {
+                        "brand": "lenovo",
+                        "size": "13.5 inch",
+                        "cost": "820 $"
+                    },                   
+                ]
+            each v,index in monitor
+                div(class="col-sm-2" onclick=`buy(${index})`) #{v.brand}
+                div(class="col-sm-2" onclick=`buy(${index})`) #{v.size}
+                div(class="col-sm-2" onclick=`buy(${index})`) #{v.cost}
+  script.                
+    function buy(itemNo)
+    {
+        alert(`you purchased Item ${itemNo+1}`)
+    }
