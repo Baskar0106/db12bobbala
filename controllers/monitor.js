@@ -30,8 +30,24 @@ exports.monitor_detail = function (req, res) {
     res.send('NOT IMPLEMENTED: monitor detail: ' + req.params.id);
 };
 // Handle monitor create on POST. 
-exports.monitor_create_post = function(req, res) { 
-    res.send('NOT IMPLEMENTED: monitor create POST'); 
+exports.monitor_create_post = async function (req, res) {
+    console.log(req.body)
+    let document = new monitor();
+    // We are looking for a body, since POST does not have query parameters.
+    // Even though bodies can be in many different formats, we will be picky
+    // and require that it be a json object
+    // {"costume_type":"goat", "cost":12, "size":"large"}
+    document.brand = req.body.brand; 
+    document.size = req.body.size; 
+    document.cost = req.body.cost;
+    try {
+        let result = await document.save();
+        res.send(result);
+    }
+    catch (err) {
+        res.status(500);
+        res.send(`{"error": ${err}}`);
+    }
 }; 
  
 // Handle monitor delete form on DELETE. 
