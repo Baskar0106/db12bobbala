@@ -1,8 +1,15 @@
 var monitor = require('../models/monitor'); 
  
-// List of all monitors 
-exports.monitor_list = function(req, res) { 
-    res.send('NOT IMPLEMENTED: monitor list'); 
+// List of all monitor
+exports.monitor_list = async function (req, res) {
+    try {
+        themonitor = await monitor.find();
+        res.send(themonitor);
+    }
+    catch (err) {
+        res.status(500);
+        res.send(`{"error": ${err}}`);
+    }
 }; 
  
 // for a specific monitor. 
