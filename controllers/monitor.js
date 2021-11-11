@@ -12,11 +12,23 @@ exports.monitor_list = async function (req, res) {
     }
 }; 
  
-// for a specific monitor. 
-exports.monitor_detail = function(req, res) { 
-    res.send('NOT IMPLEMENTED: monitor detail: ' + req.params.id); 
-}; 
+// VIEWS
+// Handle a show all view
+exports.monitor_view_all_Page = async function (req, res) {
+    try {
+        themonitor = await monitor.find();
+        res.render('monitor', { title: 'monitor Search Results', results: themonitor });
+    }
+    catch (err) {
+        res.send(`{"error": ${err}}`)
+        res.status(500);
+    }
+};
  
+// for a specific monitor.
+exports.monitor_detail = function (req, res) {
+    res.send('NOT IMPLEMENTED: monitor detail: ' + req.params.id);
+};
 // Handle monitor create on POST. 
 exports.monitor_create_post = function(req, res) { 
     res.send('NOT IMPLEMENTED: monitor create POST'); 
