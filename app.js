@@ -29,7 +29,7 @@ async function recreateDB(){
   let instance2 = new monitor({brand:"dell", size:"14 inch", cost:800});
   instance2.save( function(err,doc) {
   if(err) return console.error(err);
-  console.log("Second object saved")
+  console.log("Second object saved") 
   });
   let instance3 = new monitor({brand:"lenovo", size:"13.5 inch", cost: 820 });
   instance3.save( function(err,doc) {
