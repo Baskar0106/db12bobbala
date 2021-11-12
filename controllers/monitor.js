@@ -25,10 +25,7 @@ exports.monitor_view_all_Page = async function (req, res) {
     }
 };
  
-// for a specific monitor. 
-exports.monitor_detail = function(req, res) { 
-    res.send('NOT IMPLEMENTED: monitor detail: ' + req.params.id); 
-};
+
 
 // Handle monitor create on POST. 
 exports.monitor_create_post = async function (req, res) {
@@ -57,8 +54,24 @@ exports.monitor_delete = function(req, res) {
 }; 
  
 // Handle monitor update form on PUT. 
-exports.monitor_update_put = function(req, res) { 
-    res.send('NOT IMPLEMENTED: monitor update PUT' + req.params.id); 
+exports.monitor_update_put = async function(req, res) { 
+    console.log(`update on id ${req.params.id} with body 
+${JSON.stringify(req.body)}`) 
+    try { 
+        let toUpdate = await monitor.findById( req.params.id) 
+        // Do updates of properties 
+        if(req.body.monitor)  
+               toUpdate.brand = req.body.brand; 
+        if(req.body.size) toUpdate.size = req.body.size; 
+        if(req.body.cost) toUpdate.cost = req.body.cost; 
+        let result = await toUpdate.save(); 
+        console.log("Sucess " + result) 
+        res.send(result) 
+    } catch (err) { 
+        res.status(500) 
+        res.send(`{"error": ${err}: Update for id ${req.params.id} 
+failed`); 
+    } 
 }; 
 
 // for a specific monitor. 
