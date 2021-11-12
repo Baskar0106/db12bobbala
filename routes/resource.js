@@ -13,8 +13,8 @@ router.post('/monitor', monitor_controller.monitor_create_post);
 router.delete('/monitor/:id', monitor_controller.monitor_delete);
 // PUT request to update monitor.
 router.put('/monitor/:id', monitor_controller.monitor_update_put);
-// GET request for one monitor.
-router.get('/monitor/:id', monitor_controller.monitor_detail);
+// GET request for one monitor. 
+router.get('/monitor/:id', monitor_controller.monitor_detail);  
 // GET request for list of all monitor items.
 router.get('/monitor', monitor_controller.monitor_list);
 module.exports = router;

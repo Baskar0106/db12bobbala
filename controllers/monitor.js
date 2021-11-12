@@ -26,16 +26,9 @@ exports.monitor_view_all_Page = async function (req, res) {
 };
  
 // for a specific monitor. 
-exports.monitor_detail = async function(req, res) { 
-    console.log("detail"  + req.params.id) 
-    try { 
-        result = await monitor.findById( req.params.id) 
-        res.send(result) 
-    } catch (error) { 
-        res.status(500) 
-        res.send(`{"error": document for id ${req.params.id} not found`); 
-    } 
-}; 
+exports.monitor_detail = function(req, res) { 
+    res.send('NOT IMPLEMENTED: monitor detail: ' + req.params.id); 
+};
 
 // Handle monitor create on POST. 
 exports.monitor_create_post = async function (req, res) {
@@ -66,4 +59,16 @@ exports.monitor_delete = function(req, res) {
 // Handle monitor update form on PUT. 
 exports.monitor_update_put = function(req, res) { 
     res.send('NOT IMPLEMENTED: monitor update PUT' + req.params.id); 
+}; 
+
+// for a specific monitor. 
+exports.monitor_detail = async function(req, res) { 
+    console.log("detail"  + req.params.id) 
+    try { 
+        result = await monitor.findById( req.params.id) 
+        res.send(result) 
+    } catch (error) { 
+        res.status(500) 
+        res.send(`{"error": document for id ${req.params.id} not found`); 
+    } 
 }; 
