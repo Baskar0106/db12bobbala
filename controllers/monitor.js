@@ -48,10 +48,18 @@ exports.monitor_create_post = async function (req, res) {
     }
 }; 
  
-// Handle monitor delete form on DELETE. 
-exports.monitor_delete = function(req, res) { 
-    res.send('NOT IMPLEMENTED: monitor delete DELETE ' + req.params.id); 
-}; 
+// Handle monitor delete on DELETE. 
+exports.monitor_delete = async function(req, res) { 
+    console.log("delete "  + req.params.id) 
+    try { 
+        result = await monitor.findByIdAndDelete( req.params.id) 
+        console.log("Removed " + result) 
+        res.send(result) 
+    } catch (err) { 
+        res.status(500) 
+        res.send(`{"error": Error deleting ${err}}`); 
+    } 
+};  
  
 // Handle monitor update form on PUT. 
 exports.monitor_update_put = async function(req, res) { 
@@ -83,5 +91,19 @@ exports.monitor_detail = async function(req, res) {
     } catch (error) { 
         res.status(500) 
         res.send(`{"error": document for id ${req.params.id} not found`); 
+    } 
+}; 
+
+// Handle a show one view with id specified by query 
+exports.monitor_view_one_Page = async function(req, res) { 
+    console.log("single view for id "  + req.query.id) 
+    try{ 
+        result = await monitor.findById( req.query.id) 
+        res.render('monitordetail',  
+{ title: 'monitor Detail', toShow: result }); 
+    } 
+    catch(err){ 
+        res.status(500) 
+        res.send(`{'error': '${err}'}`); 
     } 
 }; 
