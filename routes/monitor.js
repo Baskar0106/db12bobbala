@@ -11,6 +11,8 @@ router.get('/detail', monitor_controlers.monitor_view_one_Page);
 /* GET create monitor page */ 
 router.get('/create', monitor_controlers.monitor_create_Page); 
 
+/* GET create update page */ 
+router.get('/update', monitor_controlers.monitor_update_Page); 
 
 
 module.exports = router;
