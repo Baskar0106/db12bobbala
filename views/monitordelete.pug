@@ -1,0 +1,53 @@
+extends layout 
+ 
+block content 
+  h1= title 
+ 
+  if (toShow == null) 
+    h2 No instance to delete 
+  else 
+    - let monitorid = toShow.id 
+    - let monitorbrand = toShow.brand 
+    - let monitorsize = toShow.size 
+    - let monitorcost = toShow.cost 
+    - let actionid = "/resource/monitor/" + monitorid 
+    script let actionid = "#{actionid}" 
+    div 
+      div.row 
+        div(class='monitorAttr mr-3') monitor ID is: 
+        div #{monitorid} 
+      div.row 
+        div(class='monitorAttr mr-3') monitor Brand is: 
+        div #{monitorbrand} 
+      div.row 
+        div(class='monitorAttr mr-3') monitor Size is: 
+        div #{monitorsize} 
+      div.row 
+        div(class='monitorAttr mr-3') monitor Cost is: 
+        div #{monitorcost} 
+ 
+    button(class="btn btn-danger m-2" onclick="deleteOnid()") Delete 
+    button(class="btn btn-secondary m-2" onclick="cancel()") Cancel 
+ 
+  script. 
+    function cancel() { 
+      // Go back to the home page for the monitor collection 
+      window.location.href='/monitor' 
+    } 
+  script. 
+    function deleteOnid() { 
+      console.log("starting delete") 
+      // delete first 
+      fetch(actionid, { 
+        method: 'DELETE'      // Don't need a body for the delete 
+      }).then((resp) => { 
+        return resp.json(); // or resp.text() or whatever the server sends 
+      }).then((body) => { 
+        alert("Delete succeded") 
+        window.location.href='/monitor' 
+        // TODO handle body 
+      }).catch((error) => { 
+        // TODO handle error 
+        alert("Delete failed " + error ) 
+      }); 
+    } 

@@ -3,16 +3,25 @@ extends layout
 block content 
   h1= title 
  
-  form(id='monitorForm', action="/resource/monitor", method="POST") 
+  - let monitorid = toShow.id 
+  - let monitorbrand = toShow.brand 
+  - let monitorsize = toShow.size 
+  - let monitorcost = toShow.cost
+   
+  div.row(class='mb-2') 
+    div.mr-1 ID is 
+    div #{monitorid} 
+  - let actionid = "/resource/monitor/" + monitorid 
+  form(id='monitorForm', action= actionid, method="PUT") 
     div.form-group 
-        label.monitorAttr(for='brand') monitor brand
-        input#brand(type='text', name='brand') 
+        label.monitorAttr(for='brand') monitor type 
+        input#brand(type='text', name='brand', value= brand ) 
     div.form-group 
         label.monitorAttr(for='size') monitor size 
-        input#size(type='text', name='size') 
+        input#size(type='text', name='size', value= monitorsize ) 
     div.form-group 
         label.monitorAttr(for='cost') monitor cost 
-        input#cost(type='number', name='cost') 
+        input#cost(type='number', name='cost', value= monitorcost ) 
     input(type="submit") 
  
   script. 
@@ -20,15 +29,15 @@ block content
       event.preventDefault(); 
       // TODO do something here to show user that form is being submitted 
       fetch(event.target.action, { 
-        method: 'POST', 
+        method: 'PUT', 
         body: new URLSearchParams(new FormData(event.target)) // event.target is the form 
       }).then((resp) => { 
         return resp.json(); // or resp.text() or whatever the server sends 
       }).then((body) => { 
-        alert("Save succeded") 
+        alert("Update succeded") 
         // TODO handle body 
       }).catch((error) => { 
         // TODO handle error 
-        alert("Save failed " + error ) 
+        alert("Update failed " + error ) 
       }); 
-    }); 
+    });  
