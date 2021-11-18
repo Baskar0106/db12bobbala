@@ -20,7 +20,8 @@ var resourceRouter = require('./routes/resource');
 
 // We can seed the collection if needed on server start
 async function recreateDB(){
-  // Delete everything await monitor.deleteMany();
+  // Delete everything 
+  await monitor.deleteMany();
   let instance1 = new monitor({brand:"hp", size:"16 inch", cost:1000});
   instance1.save( function(err,doc) {
   if(err) return console.error(err);

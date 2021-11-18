@@ -3,10 +3,10 @@ extends layout
 block content 
   h1= title 
  
-  - let monitorid = toShow.id 
+  - let monitorid = toShow._id 
   - let monitorbrand = toShow.brand 
+  - let monitorcost = toShow.cost 
   - let monitorsize = toShow.size 
-  - let monitorcost = toShow.cost
    
   div.row(class='mb-2') 
     div.mr-1 ID is 
@@ -14,8 +14,8 @@ block content
   - let actionid = "/resource/monitor/" + monitorid 
   form(id='monitorForm', action= actionid, method="PUT") 
     div.form-group 
-        label.monitorAttr(for='brand') monitor type 
-        input#brand(type='text', name='brand', value= brand ) 
+        label.monitorAttr(for='monitor_type') monitor brand 
+        input#brand(type='text', name='brand', value= monitorbrand ) 
     div.form-group 
         label.monitorAttr(for='size') monitor size 
         input#size(type='text', name='size', value= monitorsize ) 
@@ -40,4 +40,4 @@ block content
         // TODO handle error 
         alert("Update failed " + error ) 
       }); 
-    });  
+    }); 

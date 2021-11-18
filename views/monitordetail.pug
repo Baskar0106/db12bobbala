@@ -1,20 +1,22 @@
-extends layout
-block content
- h1= title
- - let monitorid = toShow.id
- - let monitorbrand = toShow.brand
- - let monitorsize = toShow.size
- - let monitorcost = toShow.cost
- div
- div.row
- div(class='monitorAttr mr-3') monitor ID is:
- div #{monitorid}
- div.row
- div(class='monitorAttr mr-3') monitor brand is:
- div #{monitorbrand}
- div.row
- div(class='monitorAttr mr-3') monitor Size is:
- div #{monitorsize}
- div.row
- div(class='monitorAttr mr-3') monitor Cost is:
- div #{monitorcost}
+extends layout 
+ 
+block content 
+  h1= title 
+ 
+  - let monitorid = toShow.id 
+  - let monitortbrand = toShow.brand
+  - let monitorsize = toShow.size 
+  - let monitorcost = toShow.cost
+  div 
+    div.row 
+      div(class='monitorAttr mr-3') monitor ID is: 
+      div(class='variety stylesheetnew') #{monitorid} 
+    div.row 
+      div(class='monitorAttr mr-3') monitor Type is: 
+      div(class='variety stylesheetnew') #{monitorbrand} 
+    div.row 
+      div(class='monitorAttr mr-3') monitor Size is: 
+      div(class='variety stylesheetnew') #{monitorsize} 
+    div.row 
+      div(class='monitorAttr mr-3') monitor age is: 
+      div(class='variety stylesheetnew') #{monitorcost}
