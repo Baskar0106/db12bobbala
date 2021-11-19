@@ -7,12 +7,22 @@ block content
         div(class="row")
             -
                 let monitor = results
-            each v,index in monitor
-                div(class="col-sm-2" onclick=`buy(${index})`) #{v.brand}
-                div(class="col-sm-2" onclick=`buy(${index})`) #{v.size}
-                div(class="col-sm-2" onclick=`buy(${index})`) #{v.cost}
-  script.                
-    function buy(itemNo)
-    {
-        alert(`you purchased Item ${itemNo+1}`)
-    }
+                
+  div(class="container-fluid") 
+    div(class="row  m-1") 
+      each item in monitor 
+       - let destination = `dispatch(\"/monitor/update?id=${item._id}\")` 
+        div(class="row-sm-2", class="m-1") monitor #{item.brand}(#{item.size}) is #{item.cost}
+            button.btn( class="btn-primary ml-1", onclick= destination) Update
+            
+        script.                
+            function buy(itemNo)
+            {
+                  alert(`you purchased Item ${itemNo+1}`)
+            }
+        script. 
+          function dispatch(path)
+          { 
+              window.location.href=path 
+          }
+          
