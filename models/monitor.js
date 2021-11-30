@@ -1,7 +1,13 @@
 const mongoose = require("mongoose") 
 const monitorSchema = mongoose.Schema({ 
- brand: String, 
- size: String, 
+ brand:{
+    type: String,
+    minLength: 2
+}, 
+ size: {
+    type: String,
+    minLength: 7
+}, 
  cost: Number 
 }) 
  

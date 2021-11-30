@@ -68,7 +68,7 @@ ${JSON.stringify(req.body)}`)
     try { 
         let toUpdate = await monitor.findById( req.params.id) 
         // Do updates of properties 
-        if(req.body.monitor)  
+        if(req.body.brand)  
                toUpdate.brand = req.body.brand; 
         if(req.body.size) toUpdate.size = req.body.size; 
         if(req.body.cost) toUpdate.cost = req.body.cost; 
